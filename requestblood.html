@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Spenden - Request Blood</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device.width, initial-scale=1">
+
+		<script type="text/javascript" src="jquery3.1.1.js"></script>
+		<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+		<script type="text/javascript" src="bloodbankscript.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	</head>
+</html>
+<body>
+	<div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
+    	<div class="row">
+        	<div class="col-md-1"></div>
+            <div class="col-md-1">
+            	<img src="blood_donation-512.png" height="100px" width="100px" class="img-rounded img-responsive">
+            </div>
+            <div class="col-md-6">
+            	<h2 id="header-name" style="font-size: 46px; font-family: Algerian">Spenden - Request Blood</h2>
+            </div>
+        	<div class="col-md-4"></div>
+    	</div>
+	</div>
+	<div class="container-fluid" style="padding-bottom: 55px;">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<form id="requestForm" method="post">
+					<div class="form-group">
+                        <label for="name">Name:</label>
+                    	<input type="text" class="form-control" id="name" name="fullname" placeholder="Enter Full Name">
+                    </div>
+                    <div class="form-group">
+                    	<label for="mobileno">Mobile Number:</label>
+                        <input type="text" name="mobileno" id="mobileno" class="form-control" placeholder="Enter Mobile Number">
+                    </div>
+                    <div class="form-group">
+                    	<label for="email">Email:</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email Id">
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodgroup">Select Blood Group:</label>
+                        <select class="form-control" id="bloodgroup">
+                            <option value="1">A+</option>
+                            <option value="2">A-</option>
+                            <option value="3">B+</option>
+                            <option value="4">B-</option>
+                            <option value="5">O+</option>
+                            <option value="6">O-</option>
+                            <option value="7">AB+</option>
+                            <option value="8">AB-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="donorcity">Select City:</label>
+                        <select class="form-control" id="donorcity">
+                        	<option value="1">Allahabad</option>
+                            <option value="2">Aurangabad</option>
+                            <option value="3">Bangalore</option>
+                            <option value="4">Baroda</option>
+                            <option value="5">Chandigarh</option>
+                            <option value="6">Chennai</option>
+                            <option value="7">Delhi</option>
+                            <option value="8">Guwahati</option>
+                            <option value="9">Hyderabad</option>
+                            <option value="10">Indore</option>
+                            <option value="11">Jaipur</option>
+                            <option value="12">Kolkata</option>
+                            <option value="13">Lucknow</option>
+                            <option value="14">Mumbai</option>
+                            <option value="15">Mysore</option>
+                            <option value="16">Nasik</option>
+                    	    <option value="17">Pune</option>
+                            <option value="18">Ranchi</option>
+                            <option value="19">Surat</option>
+                            <option value="20">Udaipur</option>
+                            <option value="21">Varanasi</option>
+                            <option value="22">Vishakhapatnam</option>
+                        </select>
+                	</div>
+                	<div class="form-group">
+                    	<pre><input type="checkbox" onchange="document.getElementById('requestbutton').disabled = !this.checked;" /> I accept the term's that my contact details 
+   will be broadcast on this site</pre>
+                    </div>
+                	<div class="form-group">
+                    	<input type="submit" value="Request" class="btn btn-primary" id="requestbutton" disabled>
+                   	</div>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+    	<div class="container-fluid">
+        	<div class="navbar-header">
+            	<a class="navbar-brand" href="index.html">Spenden</a>
+            </div>
+            <ul class="nav navbar-nav">
+            	<li><a href="index.html">Search Blood</a></li>
+            	<li class="active"><a href="requestblood.html">Request Blood</a></li>
+            	<li><a href="register.html">Registration</a></li>
+            	<li><a href="donorlist.php">Donor Directory</a></li>
+            	<li><a href="banklist.php">Bank Directory</a></li>
+            	<li><a href="bloodtips.html">Blood Tips</a></li>
+               	<li><a href="aboutus.html">About Us</a></li>
+            </ul>
+    	</div>
+	</nav>
+</body>

@@ -1,0 +1,46 @@
+.top-buffer {
+    margin-top: 10px;
+}
+
+#search-donor {
+    background-color: white;
+    padding-bottom: 80px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+}
+
+#srchbldbtn {
+    float: right;
+}
+
+#banksubmitbutton {
+	float: right;
+}
+
+#donorsubmitbutton {
+	float: right;
+}
+
+#requestbutton {
+	float: right;
+}
+
+#quote {
+    background-color: white;
+}
+
+.carousel-indicators li {
+  background-color: #999;
+  background-color: rgba(70,70,70,.25);
+}
+
+.carousel-indicators .active {
+  background-color: #444;
+}
+
+#mainform {
+    background-color: #ffffff;
+    margin-top: 20px;
+    border-radius: 5px;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Spenden - Front Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <script src="jquery3.1.1.js"></script>
+        <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+        
+        <script src="bloodbankscript.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <!--Jumbotron and Login-->
+        <div class="jumbotron" style="background-color: #d6351e;">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-1">
+                    <img src="blood_donation-512.png" height="100px" width="100px" class="img-rounded img-responsive">
+                </div>
+                <div class="col-md-2">
+                    <h2 id="header-name" style="font-size: 46px; font-family: Algerian">Spenden</h2>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <form name="login" id="login" method="post" action="/" class="form-inline" style="position: absolute; left: 10%; top: 3000%;">
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Username: </label>
+                            <input type="email" name="username" class="form-control" id="email" placeholder="Enter Email" data-toggle="tooltip" title="Email can only contain alphaneumerics and .,-,_,@" data-placement="bottom">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" class="sr-only">Password: </label>
+                            <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter Password" data-toggle="tooltip" title="Passwords are case-sensetive" data-placement="bottom">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Login" class="btn btn-primary" id="login_button">
+                            <a href="register.html" class="btn btn-info" id="register-button">Register</a>
+                        </div><br />
+                        <label class="radio-inline" style="margin-top: 10px"><input type="radio" name="optradio" value="donor" onclick="formaction()">Login as Donor</label>
+						<label class="radio-inline" style="margin-top: 10px"><input type="radio" name="optradio" value="bloodbank" onclick="formaction()">Login as Blood Bank</label>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="margin-bottom: 50px; padding-bottom: 50px;">
+            <!--Center Row-->
+            <div class="row top-buffer">
+                <div class="col-md-1"></div>
+                <div class="col-md-4" id="search-donor">
+                    <h2 style="padding-bottom: 20px;">Search Donors</h2>
+                    <form name="searchblood" method="post">
+                        <div class="form-group">
+                            <label for="bloodgroup">Select Blood Group:</label>
+                            <select class="form-control" id="bloodgroup">
+                                <option value="1">A+</option>
+                                <option value="2">A-</option>
+                                <option value="3">B+</option>
+                                <option value="4">B-</option>
+                                <option value="5">O+</option>
+                                <option value="6">O-</option>
+                                <option value="7">AB+</option>
+                                <option value="8">AB-</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="donorcity">Select City:</label>
+                            <select class="form-control" id="donorcity">
+                                <option value="1">Allahabad</option>
+                                <option value="2">Aurangabad</option>
+                                <option value="3">Bangalore</option>
+                                <option value="4">Baroda</option>
+                                <option value="5">Chandigarh</option>
+                                <option value="6">Chennai</option>
+                                <option value="7">Delhi</option>
+                                <option value="8">Guwahati</option>
+                                <option value="9">Hyderabad</option>
+                                <option value="10">Indore</option>
+                                <option value="11">Jaipur</option>
+                                <option value="12">Kolkata</option>
+                                <option value="13">Lucknow</option>
+                                <option value="14">Mumbai</option>
+                                <option value="15">Mysore</option>
+                                <option value="16">Nasik</option>
+                                <option value="17">Pune</option>
+                                <option value="18">Ranchi</option>
+                                <option value="19">Surat</option>
+                                <option value="20">Udaipur</option>
+                                <option value="21">Varanasi</option>
+                                <option value="22">Vishakhapatnam</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" id="srchbldbtn"><span class="glyphicon glyphicon-search"></span> Search</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-5" id="quote" style="height: 375px">
+                    <h2>Blood Tips</h2>
+                    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+                    <!--Indicators
+                    <ol class="carousel-indicators" style="float: bottom">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>-->
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <h4>Do Donate Blood if: </h4>
+                            <ul>
+                                <li>You are between 18-60 years of age.</li>
+                                <li>Your weight is 45kgs. or more.</li>
+                                <li>Your hemoglobin is 12.5gm% minimum.</li>
+                                <li>Your last blood donation was 3 months ago or earlier.</li>
+                                <li>You are healthy and have not suffered from malaria, typhoid or other transmissible disease in the recent past.</li>
+                            </ul>
+                        </div>
+                        <div class="item">
+                            <h4>Do NOT Donate Blood if: </h4>
+                            <ul>
+                                <li>Cold / fever in the past 1 week.</li>
+                                <li>Cardiac problems, hypertension, epilepsy, diabetes (on insulin therapy), history of cancer, chronic kidney or liver disease, bleeding tendencies, venereal disease etc.</li>
+                                <li>Major surgery in the last 6 months.</li>
+                                <li>Had fainting attacks during last donation.</li>
+                                <li>Shared a needle to inject drugs/ have history of drug addiction.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" style="height: 300px;">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" style="height: 300px;">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <!--Navigation Bar-->
+        <nav class="navbar navbar-inverse navbar-fixed-bottom">
+             <div class="container-fluid">
+                 <div class="navbar-header">
+                     <a class="navbar-brand" href="index.html">Spenden</a>
+                 </div>
+                 <ul class="nav navbar-nav">
+                     <li class="active"><a href="index.html">Search Blood</a></li>
+                     <li><a href="requestblood.html">Request Blood</a></li>
+                     <li><a href="register.html">Registration</a></li>
+                     <li><a href="donorlist.php">Donor Directory</a></li>
+                     <li><a href="banklist.php">Bank Directory</a></li>
+                     <li><a href="bloodtips.html">Blood Tips</a></li>
+                     <li><a href="aboutus.html">About Us</a></li>
+                 </ul>
+             </div>
+        </nav>
+    </body>
+</html>
