@@ -2,7 +2,48 @@
 <html>
 	<head>
 		<?php
-		
+        
+            session_start();
+            
+            if(!isset($_SESSION["logged"])) {
+                
+                $username = $_POST["username"];
+                $pass = $_POST["password"];
+        
+                mysql_connect("localhost","root") or die(mysql_error());
+        
+                mysql_select_db("bloodbank") or die(mysql_error());
+        
+                $query = "select * from donors where email = '$username'";
+        
+                $result = mysql_query($query) or die(mysql_error());
+                $result = mysql_fetch_row($result, MYSQL_ASSOC);
+        
+                if(md5($pass) == $result["password"]) {
+                
+                    $_SESSION["logged"] = true;
+                    $_SESSION["username"] = $result["email"];
+                    $_SESSION["id"] = $result["donorid"];
+                    
+                }
+                
+                mysql_close();
+                
+            }
+        
+            mysql_connect("localhost","root") or die(mysql_error());
+        
+            mysql_select_db("bloodbank") or die(mysql_error());
+        
+            $username = $_SESSION["username"];
+        
+            $query = "select * from donors where email = '$username'";
+                
+            $result = mysql_query($query) or die(mysql_error());
+            $result = mysql_fetch_array($result);
+        
+            echo "<title>Spenden - ".$result["name"]."</title>";
+        
 		?>
 
 		<meta charset="utf-8">
@@ -29,21 +70,38 @@
                 <div class="col-md-4"></div>
             </div>
         </div>
-        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="default-male.jpg" class="media-object" style="height: 150px; width: 150px">
+                        </div>
+                        <div class="media-body">
+                            <h2><?php  echo $result["name"]; ?></h2>
+                            <br>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
         <!--Navigation Bar-->
         <nav class="navbar navbar-inverse navbar-fixed-bottom">
              <div class="container-fluid">
                  <div class="navbar-header">
-                     <a class="navbar-brand" href="donorprofile.php">Home</a>
+                     <a class="navbar-brand" href="donorprofile.php">Profile</a>
                  </div>
                  <ul class="nav navbar-nav">
-                     <li><a href="index.html">View Requests</a></li>
-                     <li><a href="requestblood.html">View Events</a></li>
-                     <li><a href="register.html">Edit Profile</a></li>
-                     <li><a href="donorlist.php">Donor Directory</a></li>
-                     <li><a href="banklist.php">Bank Directory</a></li>
-                     <li><a href="bloodtips.html">Blood Tips</a></li>
-                     <li><a href="aboutus.html">About Us</a></li>
+                     <li><a href="#">View Requests</a></li>
+                     <li><a href="#">View Events</a></li>
+                     <li><a href="#">Edit Profile</a></li>
+                     <li><a href="donorlist-logged.php">Donor Directory</a></li>
+                     <li><a href="banklist-logged.php">Bank Directory</a></li>
+                     <li><a href="bloodtips-logged.html">Blood Tips</a></li>
+                     <li><a href="aboutus-logged.html">About Us</a></li>
                  </ul>
              </div>
         </nav>
