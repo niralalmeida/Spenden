@@ -47,7 +47,7 @@
 						$city = $cities[$row["city"] - 1];
 						echo "<div class='media'>";
 						echo "<div class='media-left'>";
-						echo "<img src='default-male.jpg' class='media-object' style='width: 100px'>";
+						echo "<img src='default-male.jpg' class='media-object' style='width: 75px; height: 75px'>";
 						echo "</div>";
 						echo "<div class='media-body'>";
 						echo "<h4 class='media-heading'>$name</h4>";

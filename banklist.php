@@ -28,6 +28,9 @@
             </div>
         </div>
         <div class="container">
+            <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
         	<?php
                 $cities = ['Allahabad','Aurangabad','Bangalore','Baroda','Chandigarh','Chennai','Delhi','Guwahati','Hyderabad','Indore','Jaipur','Kolkata','Lucknow','Mumbai','Mysore','Nasik','Pune','Ranchi','Surat','Udaipur','Varanasi','Vishakhapatnam'];
         		mysql_connect("localhost","root") or die(mysql_error());
@@ -40,23 +43,31 @@
 						$mobile = $row["mobileno"];
 						$email = $row["email"];
 						$city = $cities[$row["location"] - 1];
-						echo "<div class='row'>";
-						echo "<div class='col-md-2'></div>";
-						echo "<div class='col-md-8'>";
-						echo "<pre>";
-						echo "<h3>$name</h3>";
-                        echo "<strong>Contact Number:</strong> $mobile    <strong>Email:</strong> $email";
-                        echo "    <strong>City:</strong> $city";
-						echo "</pre>";
-						echo "</div>";
-						echo "<div class='col-md-2'></div>";
-						echo "</div>";
+						echo "<div class='media'>";
+                        echo "<div class='media-left'>";
+                        echo "<img src='blood_drop-512.png' class='media-object img-rounded' style='width: 75px; height: 75px'>";
+                        echo "</div>";
+                        echo "<div class='media-body'>";
+                        echo "<h4 class='media-heading'>$name</h4>";
+                        echo "<p>";
+                        echo "Mobile Number: $mobile";
+                        echo "  |  ";
+                        echo "Email: $email";
+                        echo "</p>";
+                        echo "<p>";
+                        echo "City: $city";
+                        echo "</p>";
+                        echo "</div>";
+                        echo "</div>";
 					}
 				} else {
 					echo "No Registered Donors";
 				}
 				mysql_close();
         	?>
+            </div>
+            <div class="col-md-3"></div>
+            </div>
         </div>
         <!--Navigation Bar-->
         <nav class="navbar navbar-inverse navbar-fixed-bottom">
