@@ -10,6 +10,11 @@
 		<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 		<script type="text/javascript" src="bloodbankscript.js"></script>
+        <script type="text/javascript">
+        $document.ready(function() {
+            $('#navbuttons li:last-child').addClass('active');
+        });
+        </script>
 
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -75,22 +80,19 @@ Registration switch designed at <a href="https://proto.io/freebies/onoff/">proto
             </div>
             <div class="col-md-4"></div>
         </div>
-        <!--Navigation Bar-->
-        <nav class="navbar navbar-inverse navbar-fixed-bottom">
-             <div class="container-fluid">
-                 <div class="navbar-header">
-                     <a class="navbar-brand" href="index.html">Spenden</a>
-                 </div>
-                 <ul class="nav navbar-nav">
-                     <li><a href="index.html">Search Blood</a></li>
-                     <li><a href="requestblood.html">Request Blood</a></li>
-                     <li><a href="register.html">Registration</a></li>
-                     <li><a href="donorlist.php">Donor Directory</a></li>
-                     <li><a href="banklist.php">Bank Directory</a></li>
-                     <li><a href="bloodtips.html">Blood Tips</a></li>
-                     <li class="active"><a href="aboutus.html">About Us</a></li>
-                 </ul>
-             </div>
-        </nav>
+        <?php
+            session_start();
+        
+            if(isset($_SESSION["loggedas"])) {
+                if($_SESSION["loggedas"] == "donor") {
+                    include 'loggeddonor.php';
+                } else {
+                    include 'loggedbank.php';
+                }
+            } else {
+                include 'defaultnav.php';
+                session_destroy();
+            }
+        ?>
 	</body>
 </html>

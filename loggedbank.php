@@ -1,11 +1,11 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
      <div class="container-fluid">
          <div class="navbar-header">
-             <a class="navbar-brand" href="donorprofile.php">Profile</a>
+             <a class="navbar-brand" href="bankprofile.php">Profile</a>
          </div>
-         <ul class="nav navbar-nav" id="navbuttons">
-             <li><a href="#">View Requests</a></li>
+         <ul class="nav navbar-nav">
              <li><a href="#">View Events</a></li>
+             <li><a href="#">Publish Event</a></li>
              <li><a href="#">Edit Profile</a></li>
              <li><a href="donorlist.php">Donor Directory</a></li>
              <li><a href="banklist.php">Bank Directory</a></li>

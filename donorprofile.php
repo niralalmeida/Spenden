@@ -8,7 +8,7 @@
         
             session_start();
             
-            if(!isset($_SESSION["logged"])) {
+            if(!isset($_SESSION["loggedas"])) {
                 
                 $username = $_POST["username"];
                 $pass = $_POST["password"];
@@ -28,6 +28,9 @@
                     $_SESSION["username"] = $result["email"];
                     $_SESSION["id"] = $result["donorid"];
                     
+                } else {
+                    header("Location: index.html");
+                    exit();
                 }
                 
                 mysql_close();
@@ -79,7 +82,7 @@
                 <div class="col-md-8">
                     <div class="media">
                         <div class="media-left">
-                            <img src="default-male.jpg" class="media-object" style="height: 150px; width: 150px">
+                            <img src="default-<?php echo($result['gender']);  ?>.png" class="media-object" style="height: 150px; width: 150px;">
                         </div>
                         <div class="media-body">
                             <h2><?php  echo $result["name"]; ?></h2>
@@ -88,6 +91,10 @@
                             <p><strong>Email Id:</strong> <?php  echo $result["email"]; ?></p>
                             <p><strong>Blood Group:</strong> <?php  echo $bloodgroup[$result["bloodgroup"] - 1]; ?></p>
                             <p><strong>City:</strong> <?php  echo $cities[$result["city"] - 1]; ?></p>
+                            <p><strong>Age:</strong> <?php  echo $result["age"]; ?></p>
+                            <p><strong>Weight:</strong> <?php  echo $result["weight"]; ?> kg</p>
+                            <p><strong>Age:</strong> <?php  echo $result["age"]; ?></p>
+                            <p><strong>Sex:</strong> <?php  echo ucfirst($result["gender"]); ?></p>
                             <a type="button" class="btn btn-success" href="logout.php">Logout</a>
                         </div>
                     </div>

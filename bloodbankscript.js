@@ -1,9 +1,9 @@
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();  
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function formSelect() {
-    if($('#myonoffswitch').is(":checked")) {
+    if ($('#myonoffswitch').is(":checked")) {
         $('#bankRegister').hide();
         $('#donorRegister').show();
     } else {
@@ -18,7 +18,8 @@ function init() {
 }
 
 function formaction() {
-	if(document.getElementsByName("optradio")[0].checked) {
+    document.getElementById('login_button').disabled = false;
+	if (document.getElementsByName("optradio")[0].checked) {
 		document.getElementById("login").action = "donorprofile.php";
 	} else {
 		document.getElementById("login").action = "bankprofile.php";

@@ -60,7 +60,19 @@
     			</div>
     			<div id="collapse2" class="panel-collapse collapse">
     				<div class="panel-body">
-    					Text
+    					<ul>
+                            <li>Cold/fever in the past 1 week.</li>
+                            <li>Under treatment with antibiotics or any other medication.</li>
+                            <li>Cardiac problems, hypertension, epilepsy, diabetes (on insulin therapy), history of cancer, chronic kidney or liver disease, bleeding tendencies, venereal disease etc.</li>
+                            <li>Major surgery in the last 6 months.</li>
+                            <li>Vaccination in the last 24 hours.</li>
+                            <li>Had a miscarriage in the last 6 months or have been pregnant / lactating in the last one year.</li>
+                            <li>Had fainting attacks during last donation.</li>
+                            <li>Have regularly received treatment with blood products.</li>
+                            <li>Shared a needle to inject drugs/ have history of drug addiction.</li>
+                            <li>Had sexual relations with different partners or with a high risk individual</li>
+                            <li>Been tested positive for antibodies to HIV.</li>
+                        </ul>
     				</div>
     			</div>	
     		</div>
@@ -72,7 +84,13 @@
     			</div>
     			<div id="collapse3" class="panel-collapse collapse">
     				<div class="panel-body">
-    					Text
+    					<ul>
+                            <li>You are between age group of 18-60 years.</li>
+                            <li>Your weight is 45 kgs or more.</li>
+                            <li>Your hemoglobin is 12.5 gm% minimum.</li>
+                            <li>Your last blood donation was 3 or more months earlier.</li>
+                            <li>You are healthy and have not suffered from malaria, typhoid or other transmissible disease in the recent past.</li>
+                        </ul>
     				</div>
     			</div>	
     		</div>
@@ -84,7 +102,24 @@
     			</div>
     			<div id="collapse4" class="panel-collapse collapse">
     				<div class="panel-body">
-    					Text
+                        Blood type is determined by which antibodies and antigens the person's blood produces. An individual has two types of blood groups namely ABO-grouping and Rh-grouping. Rh is called as the Rhesus factor that has come to us from Rhesus monkeys.
+
+                        Most humans are in the ABO blood group. The ABO group has four categories namely:
+                        <ol>
+                            <li>A group</li>
+                            <li>B group</li>
+                            <li>O group</li>
+                            <li>AB group</li>
+                        </ol>
+                        In the Rh- group, either the individual is said to be Rh- Negative or Rh- Positive.
+
+                        Thus blood group of any human being will mainly fall in any one of the following groups.
+                        <ul>
+                            <li>A positive or A negative</li>
+                            <li>B positive or B negative</li>
+                            <li>O positive or O negative</li>
+                            <li>AB positive or AB negative</li>
+                        </ul>
     				</div>
     			</div>	
     		</div>
@@ -96,7 +131,11 @@
     			</div>
     			<div id="collapse5" class="panel-collapse collapse">
     				<div class="panel-body">
-    					Text
+    					The most common blood type is O, followed by type A.
+
+                        Type O individuals are often called "universal donors" since their blood can be transfused into persons with any blood type. Those with type AB blood are called "universal recipients" because they can receive blood of any type.
+
+                        However, since approximately twice as many people in the general population have O and A blood types, a blood bank's need for this type of blood increases exponentially.
     				</div>
     			</div>	
     		</div>
@@ -108,7 +147,11 @@
     			</div>
     			<div id="collapse6" class="panel-collapse collapse">
     				<div class="panel-body">
-    					Text
+    					A healthy diet helps ensure a successful blood donation, and also makes you feel better! Check out the following recommended foods to eat prior to your donation.
+                        <ul>
+                            <li>Low fat foods</li>
+                            <li>Iron rich foods</li>
+                        </ul>
     				</div>
     			</div>	
     		</div>
@@ -120,7 +163,7 @@
     			</div>
     			<div id="collapse7" class="panel-collapse collapse">
     				<div class="panel-body">
-    					Text
+    					A blood bank is a place designed especially for the storage of blood and blood products. Large coolers hold these products at a constant temperature and they are available at a moment's notice.
     				</div>
     			</div>	
     		</div>
@@ -132,7 +175,7 @@
     			</div>
     			<div id="collapse8" class="panel-collapse collapse">
     				<div class="panel-body">
-    					Text
+    					Donating blood is a life saving measure especially when you have a rare blood type. Blood donation is safe and simple. It takes only about 10 minutes to donate blood - less than the time of an average telephone call. We can save upto 3 to 4 precious lives by donating blood.
     				</div>
     			</div>	
     		</div>
@@ -144,28 +187,24 @@
     			</div>
     			<div id="collapse9" class="panel-collapse collapse">
     				<div class="panel-body">
-    					Text
+    					The day is celebrated to raise awareness globally about the need for regular and voluntary blood donation.
     				</div>
     			</div>	
     		</div>
     	</div>
     </div>
-    <!--Navigation Bar-->
-    <nav class="navbar navbar-inverse navbar-fixed-bottom">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Spenden</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="index.html">Search Blood</a></li>
-                <li><a href="requestblood.html">Request Blood</a></li>
-                <li><a href="register.html">Registration</a></li>
-                <li><a href="donorlist.php">Donor Directory</a></li>
-                <li><a href="banklist.php">Bank Directory</a></li>
-                <li class="active"><a href="bloodtips.html">Blood Tips</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php
+        session_start();
+        
+        if(isset($_SESSION["loggedas"])) {
+            if($_SESSION["loggedas"] == "donor") {
+                include 'loggeddonor.php';
+            } else {
+                include 'loggedbank.php';
+            }
+        } else {
+            include 'defaultnav.php';
+        }
+    ?>
 </body>
 </html>

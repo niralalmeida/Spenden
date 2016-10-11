@@ -47,7 +47,7 @@
 						$city = $cities[$row["city"] - 1];
 						echo "<div class='media'>";
 						echo "<div class='media-left'>";
-						echo "<img src='default-male.jpg' class='media-object' style='width: 75px; height: 75px'>";
+						echo "<img src='default-".$row['gender'].".png' class='media-object' style='width: 75px; height: 75px'>";
 						echo "</div>";
 						echo "<div class='media-body'>";
 						echo "<h4 class='media-heading'>$name</h4>";
@@ -73,22 +73,18 @@
             <div class="col-md-3"></div>
             </div>
         </div>
-        <!--Navigation Bar-->
-        <nav class="navbar navbar-inverse navbar-fixed-bottom">
-             <div class="container-fluid">
-                 <div class="navbar-header">
-                     <a class="navbar-brand" href="index.html">Spenden</a>
-                 </div>
-                 <ul class="nav navbar-nav">
-                     <li><a href="index.html">Search Blood</a></li>
-                     <li><a href="requestblood.html">Request Blood</a></li>
-                     <li><a href="register.html">Registration</a></li>
-                     <li class="active"><a href="donorlist.php">Donor Directory</a></li>
-                     <li><a href="banklist.php">Bank Directory</a></li>
-                     <li><a href="bloodtips.html">Blood Tips</a></li>
-                     <li><a href="aboutus.html">About Us</a></li>
-                 </ul>
-             </div>
-        </nav>
+        <?php
+            session_start();
+        
+            if(isset($_SESSION["loggedas"])) {
+                if($_SESSION["loggedas"] == "donor") {
+                    include 'loggeddonor.php';
+                } else {
+                    include 'loggedbank.php';
+                }
+            } else {
+                include 'defaultnav.php';
+            }
+        ?>
 	</body>
 </html>
