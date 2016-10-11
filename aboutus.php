@@ -79,16 +79,16 @@ Registration switch designed at <a href="https://proto.io/freebies/onoff/">proto
         <nav class="navbar navbar-inverse navbar-fixed-bottom">
              <div class="container-fluid">
                  <div class="navbar-header">
-                     <a class="navbar-brand" href="donorprofile.php">Profile</a>
+                     <a class="navbar-brand" href="index.html">Spenden</a>
                  </div>
                  <ul class="nav navbar-nav">
-                     <li><a href="#">View Requests</a></li>
-                     <li><a href="#">View Events</a></li>
-                     <li><a href="#">Edit Profile</a></li>
-                     <li><a href="donorlist-logged.php">Donor Directory</a></li>
-                     <li><a href="banklist-logged.php">Bank Directory</a></li>
-                     <li><a href="bloodtips-logged.html">Blood Tips</a></li>
-                     <li class="active"><a href="aboutus-logged.html">About Us</a></li>
+                     <li><a href="index.html">Search Blood</a></li>
+                     <li><a href="requestblood.html">Request Blood</a></li>
+                     <li><a href="register.html">Registration</a></li>
+                     <li><a href="donorlist.php">Donor Directory</a></li>
+                     <li><a href="banklist.php">Bank Directory</a></li>
+                     <li><a href="bloodtips.html">Blood Tips</a></li>
+                     <li class="active"><a href="aboutus.html">About Us</a></li>
                  </ul>
              </div>
         </nav>

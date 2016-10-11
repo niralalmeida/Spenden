@@ -3,6 +3,9 @@
 	<head>
 		<?php
         
+            $bloodgroup = ['A+','A-','B+','B-','O+','O-','AB+','AB-'];
+            $cities = ['Allahabad','Aurangabad','Bangalore','Baroda','Chandigarh','Chennai','Delhi','Guwahati','Hyderabad','Indore','Jaipur','Kolkata','Lucknow','Mumbai','Mysore','Nasik','Pune','Ranchi','Surat','Udaipur','Varanasi','Vishakhapatnam'];
+        
             session_start();
             
             if(!isset($_SESSION["logged"])) {
@@ -21,7 +24,7 @@
         
                 if(md5($pass) == $result["password"]) {
                 
-                    $_SESSION["logged"] = true;
+                    $_SESSION["loggedas"] = "donor";
                     $_SESSION["username"] = $result["email"];
                     $_SESSION["id"] = $result["donorid"];
                     
@@ -81,7 +84,11 @@
                         <div class="media-body">
                             <h2><?php  echo $result["name"]; ?></h2>
                             <br>
-                            
+                            <p><strong>Contact Number:</strong> <?php  echo $result["mobileno"]; ?></p>
+                            <p><strong>Email Id:</strong> <?php  echo $result["email"]; ?></p>
+                            <p><strong>Blood Group:</strong> <?php  echo $bloodgroup[$result["bloodgroup"] - 1]; ?></p>
+                            <p><strong>City:</strong> <?php  echo $cities[$result["city"] - 1]; ?></p>
+                            <a type="button" class="btn btn-success" href="logout.php">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -89,21 +96,6 @@
             </div>
         </div>
         <!--Navigation Bar-->
-        <nav class="navbar navbar-inverse navbar-fixed-bottom">
-             <div class="container-fluid">
-                 <div class="navbar-header">
-                     <a class="navbar-brand" href="donorprofile.php">Profile</a>
-                 </div>
-                 <ul class="nav navbar-nav">
-                     <li><a href="#">View Requests</a></li>
-                     <li><a href="#">View Events</a></li>
-                     <li><a href="#">Edit Profile</a></li>
-                     <li><a href="donorlist-logged.php">Donor Directory</a></li>
-                     <li><a href="banklist-logged.php">Bank Directory</a></li>
-                     <li><a href="bloodtips-logged.html">Blood Tips</a></li>
-                     <li><a href="aboutus-logged.html">About Us</a></li>
-                 </ul>
-             </div>
-        </nav>
+        <?php  include 'loggeddonor.php' ?>
 	</body>
 </html>
