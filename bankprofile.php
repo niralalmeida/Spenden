@@ -46,6 +46,11 @@
                 
             $result = mysql_query($query) or die(mysql_error());
             $result = mysql_fetch_array($result);
+
+            $query = "select * from bloodstocks where bankid = ".$_SESSION['id'];
+
+            $stocks = mysql_query($query) or die(mysql_error());
+            $stocks = mysql_fetch_array($stocks);
         
             echo "<title>Spenden - ".$result["name"]."</title>";
         
@@ -56,8 +61,55 @@
 
 		<script type="text/javascript" src="jquery3.1.1.js"></script>
 		<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="Chart.js"></script>
 
 		<script type="text/javascript" src="bloodbankscript.js"></script>
+        <script type="text/javascript">
+        window.onload = drawchart;
+        function drawchart() {
+            var ctx = document.getElementById("stockchart");
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["A+", "A-", "B+", "B-", "O+", "O-","AB+","AB-"],
+                    datasets: [{
+                        label: 'Blood Stock (in litres)',
+                        data: [<?php echo($stocks['aplus'].",".$stocks['aminus'].",".$stocks['bplus'].",".$stocks['bminus'].",".$stocks['oplus'].",".$stocks['ominus'].",".$stocks['abplus'].",".$stocks['abminus']) ?>],
+                        backgroundColor: [
+                            'rgba(255, 0, 0, 0.2)',
+                            'rgba(255, 0, 0, 0.2)',
+                            'rgba(255, 0, 0, 0.2)',
+                            'rgba(255, 0, 0, 0.2)',
+                            'rgba(255, 0, 0, 0.2)',
+                            'rgba(255, 0, 0, 0.2)',
+                            'rgba(255, 0, 0, 0.2)',
+                            'rgba(255, 0, 0, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 0, 0, 1)',
+                            'rgba(255, 0, 0, 1)',
+                            'rgba(255, 0, 0, 1)',
+                            'rgba(255, 0, 0, 1)',
+                            'rgba(255, 0, 0, 1)',
+                            'rgba(255, 0, 0, 1)',
+                            'rgba(255, 0, 0, 1)',
+                            'rgba(255, 0, 0, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        </script>
 
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -76,9 +128,9 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
+            <div class="row" style="margin-top: 75px;">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
                     <div class="media">
                         <div class="media-left">
                             <img src="blood_drop-512.png" class="media-object" style="height: 150px; width: 150px;">
@@ -93,7 +145,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-5">
+                    <canvas id="stockchart"></canvas>
+                </div>
+                <div class="col-md-1"></div>
             </div>
         </div>
         <!--Navigation Bar-->

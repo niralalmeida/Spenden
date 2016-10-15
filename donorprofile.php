@@ -93,7 +93,6 @@
                             <p><strong>City:</strong> <?php  echo $cities[$result["city"] - 1]; ?></p>
                             <p><strong>Age:</strong> <?php  echo $result["age"]; ?></p>
                             <p><strong>Weight:</strong> <?php  echo $result["weight"]; ?> kg</p>
-                            <p><strong>Age:</strong> <?php  echo $result["age"]; ?></p>
                             <p><strong>Sex:</strong> <?php  echo ucfirst($result["gender"]); ?></p>
                             <a type="button" class="btn btn-success" href="logout.php">Logout</a>
                         </div>

@@ -3,7 +3,7 @@
          <div class="navbar-header">
              <a class="navbar-brand" href="index.html">Spenden</a>
          </div>
-         <ul class="nav navbar-nav">
+         <ul class="nav navbar-nav" id="navbuttons">
                <li><a href="index.html">Search Blood</a></li>
                <li><a href="requestblood.html">Request Blood</a></li>
                <li><a href="register.html">Registration</a></li>
