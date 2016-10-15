@@ -51,10 +51,10 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-4" id="search-donor">
                     <h2 style="padding-bottom: 20px;">Search Donors</h2>
-                    <form name="searchblood" method="post">
+                    <form name="searchblood" method="post" action="searchresults.php">
                         <div class="form-group">
                             <label for="bloodgroup">Select Blood Group:</label>
-                            <select class="form-control" id="bloodgroup">
+                            <select class="form-control" id="bloodgroup" name="bloodgroup">
                                 <option value="1">A+</option>
                                 <option value="2">A-</option>
                                 <option value="3">B+</option>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="form-group">
                             <label for="donorcity">Select City:</label>
-                            <select class="form-control" id="donorcity">
+                            <select class="form-control" id="donorcity" name="city">
                                 <option value="1">Allahabad</option>
                                 <option value="2">Aurangabad</option>
                                 <option value="3">Bangalore</option>
