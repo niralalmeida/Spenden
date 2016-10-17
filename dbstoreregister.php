@@ -53,6 +53,8 @@
         $_SESSION["loggedas"] = "bank";
         $_SESSION["username"] = $email;
         $_SESSION["id"] = $result["bankid"];
+        
+        mysql_query("insert into bloodstocks values(".$_SESSION["id"].",0,0,0,0,0,0,0,0)") or die(mysql_error());
 
         header("Location: bankprofile.php");
         exit();

@@ -10,6 +10,11 @@
 		<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 		<script type="text/javascript" src="bloodbankscript.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $('#navbuttons li:nth-child(4)').addClass('active');
+        });
+    </script>
 
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">

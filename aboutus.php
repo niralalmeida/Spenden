@@ -11,8 +11,8 @@
 
 		<script type="text/javascript" src="bloodbankscript.js"></script>
         <script type="text/javascript">
-        $document.ready(function() {
-            $('#navbuttons li:last-child').addClass('active');
+        $(document).ready(function() {
+            $('#navbuttons li:nth-child(7)').addClass('active');
         });
         </script>
 
@@ -75,8 +75,9 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <pre style="padding-bottom: 10%;">This site was made using Bootstrap and Jquery. 
-Registration switch designed at <a href="https://proto.io/freebies/onoff/">proto.io</a></pre>
+                <pre style="padding-bottom: 10%;">This site was made using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="https://jquery.org/">Jquery</a>. 
+Registration switch designed at <a href="https://proto.io/freebies/onoff/">proto.io</a>
+Charts built using <a href="http://www.chartjs.org/">Chart.js</a></pre>
             </div>
             <div class="col-md-4"></div>
         </div>
