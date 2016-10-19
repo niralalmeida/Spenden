@@ -45,6 +45,9 @@
 				$result = mysql_query($query) or die(mysql_error());
 				if(mysql_num_rows($result) > 0 ) {
 					while ($row = mysql_fetch_array($result)) {
+						if($row["donorid"] == 0) {
+							continue;
+						}
 						$name = $row["name"];
 						$mobile = $row["mobileno"];
 						$email = $row["email"];

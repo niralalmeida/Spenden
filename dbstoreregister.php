@@ -16,7 +16,11 @@
         mysql_connect("localhost", "root") or die(mysql_error());
         mysql_select_db("bloodbank") or die(mysql_error());
 
-        mysql_query("insert into donors(name,age,mobileno,email,password,weight,gender,bloodgroup,city)  values('$name','$age','$mobile','$email','".md5('$password')."','$weight','$gender','$bloodgroup','$city')") or die(mysql_error());
+        $maxid = mysql_query("select max(donorid) from donors") or die(mysql_error());
+        $maxid = mysql_fetch_array($maxid);
+        $maxid = $maxid[0] + 1;
+
+        mysql_query("insert into donors(donorid,name,age,mobileno,email,password,weight,gender,bloodgroup,city)  values(".$maxid.",'$name','$age','$mobile','$email','".md5('$password')."','$weight','$gender','$bloodgroup','$city')") or die(mysql_error());
 
         $result = mysql_query("select * from donors where email = '$email'") or die(mysql_error());
         $result = mysql_fetch_array($result, MYSQL_ASSOC);
@@ -43,7 +47,11 @@
         mysql_connect("localhost", "root") or die(mysql_error());
         mysql_select_db("bloodbank") or die(mysql_error());
 
-        mysql_query("insert into bloodbanks(name, mobileno, email, password, location) values('$name','$mobile','$email','".md5($password)."',$city)") or die(mysql_error());
+        $maxid = mysql_query("select max(bankid) from bloodbanks") or die(mysql_error());
+        $maxid = mysql_fetch_array($maxid);
+        $maxid = $maxid[0] + 1;
+
+        mysql_query("insert into bloodbanks(bankid,name, mobileno, email, password, location) values(".$maxid.",'$name','$mobile','$email','".md5($password)."',$city)") or die(mysql_error());
 
         $result = mysql_query("select * from bloodbanks where email = '$email'") or die(mysql_error());
         $result = mysql_fetch_array($result, MYSQL_ASSOC);

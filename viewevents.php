@@ -67,8 +67,9 @@
                         	echo "</div>";
                         	echo "<div class='media-body'>";
                         	echo "<h4 class='media-heading'>".$eventname."</h4>";
-                        	echo "<p><strong>By:</strong> ".$bank["name"]."</p>";
-                        	echo "<p><strong>On:</strong> ".$eventday." of ".$eventmonth."</p>";
+                        	echo "<p><strong>By:</strong> ".$bank["name"];
+                            echo "     |    ";
+                        	echo "<strong>On:</strong> ".$eventday." of ".$eventmonth."</p>";
                         	echo "<p><strong>At:</strong> ".$eventlocation."</p>";
                         	echo "</div></div>";
     					}
