@@ -14,6 +14,22 @@
         $(document).ready(function() {
             $('#navbuttons li:nth-child(5)').addClass('active');
         });
+
+        function showstock(id) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    var doc = document.getElementById("stockframe").contentWindow.document;
+                    doc.open();
+                    doc.write(this.responseText);
+                    doc.close();
+                }
+            };
+
+            xmlhttp.open("GET","stock.php?q=" + id,true);
+            xmlhttp.send();
+
+        }
     </script>
 
 		<link rel="stylesheet" type="text/css" href="style.css">
@@ -33,10 +49,12 @@
             </div>
         </div>
         <div class="container">
-            <div class="row" style="padding-bottom: 10px">
-            <div class="col-md-3"></div>
+            <div class="row" style="padding-bottom: 55px">
             <div class="col-md-6">
         	<?php
+
+                session_start();
+
                 $cities = ['Allahabad','Aurangabad','Bangalore','Baroda','Chandigarh','Chennai','Delhi','Guwahati','Hyderabad','Indore','Jaipur','Kolkata','Lucknow','Mumbai','Mysore','Nasik','Pune','Ranchi','Surat','Udaipur','Varanasi','Vishakhapatnam'];
         		mysql_connect("localhost","root") or die(mysql_error());
 				mysql_select_db("bloodbank") or die(mysql_error());
@@ -62,6 +80,7 @@
                         echo "<p>";
                         echo "City: $city";
                         echo "</p>";
+                        echo "<button id=".$row["bankid"]." class='btn btn-warning' onmouseup='showstock(this.id)'>Show Stocks</button>";
                         echo "</div>";
                         echo "</div>";
 					}
@@ -71,11 +90,12 @@
 				mysql_close();
         	?>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-6">
+            </div>
             </div>
         </div>
+        <iframe id="stockframe" style="height: 50%; width: 45%; position: fixed; top: 35%; left: 50%; border: none;"></iframe>
         <?php
-            session_start();
         
             if(isset($_SESSION["loggedas"])) {
                 if($_SESSION["loggedas"] == "donor") {
@@ -84,6 +104,7 @@
                     include 'loggedbank.php';
                 }
             } else {
+                session_destroy();
                 include 'defaultnav.php';
             }
         ?>

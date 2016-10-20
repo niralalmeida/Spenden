@@ -20,7 +20,7 @@
         $maxid = mysql_fetch_array($maxid);
         $maxid = $maxid[0] + 1;
 
-        mysql_query("insert into donors(donorid,name,age,mobileno,email,password,weight,gender,bloodgroup,city)  values(".$maxid.",'$name','$age','$mobile','$email','".md5('$password')."','$weight','$gender','$bloodgroup','$city')") or die(mysql_error());
+        mysql_query("insert into donors(donorid,name,age,mobileno,email,password,weight,gender,bloodgroup,city)  values(".$maxid.",'$name','$age','$mobile','$email','".md5($password)."','$weight','$gender','$bloodgroup','$city')") or die(mysql_error());
 
         $result = mysql_query("select * from donors where email = '$email'") or die(mysql_error());
         $result = mysql_fetch_array($result, MYSQL_ASSOC);

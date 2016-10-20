@@ -11,10 +11,10 @@
 
 		<script type="text/javascript" src="bloodbankscript.js"></script>
         <script type="text/javascript">
-        $(document).ready(function() {
-            $('#navbuttons li:nth-child(4)').addClass('active');
-        });
-    </script>
+        	$(document).ready(function() {
+        	    $('#navbuttons li:nth-child(4)').addClass('active');
+        	});
+    	</script>
 
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
@@ -91,6 +91,7 @@
                     include 'loggedbank.php';
                 }
             } else {
+            	session_destroy();
                 include 'defaultnav.php';
             }
         ?>
