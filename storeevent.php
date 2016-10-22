@@ -16,6 +16,7 @@
 
 	mysql_close();
 
-	header("Location: viewevents.php")
+	header("Location: viewevents.php");
+	exit();
 
 ?>

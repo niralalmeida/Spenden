@@ -4,7 +4,7 @@
              <a class="navbar-brand" href="donorprofile.php">Profile</a>
          </div>
          <ul class="nav navbar-nav" id="navbuttons">
-             <li><a href="#">View Requests</a></li>
+             <li><a href="viewrequests.php">View Requests</a></li>
              <li><a href="donorevents.php">View Events</a></li>
              <li><a href="donoreditprofile.php">Edit Profile</a></li>
              <li><a href="donorlist.php">Donor Directory</a></li>

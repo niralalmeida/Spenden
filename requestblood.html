@@ -14,8 +14,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
 	</head>
-</html>
-<body>
+<body background="background/az_subtle_@2X.png">
 	<div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
     	<div class="row">
         	<div class="col-md-1"></div>
@@ -31,8 +30,8 @@
 	<div class="container-fluid" style="padding-bottom: 55px;">
 		<div class="row">
 			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<form id="requestForm" method="post">
+			<div class="col-md-4 well" style="background-color: white">
+				<form id="requestForm" method="post" action="storerequest.php">
 					<div class="form-group">
                         <label for="name">Name:</label>
                     	<input type="text" class="form-control" id="name" name="fullname" placeholder="Enter Full Name">
@@ -47,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         <label for="bloodgroup">Select Blood Group:</label>
-                        <select class="form-control" id="bloodgroup">
+                        <select class="form-control" id="bloodgroup" name="bloodgroup">
                             <option value="1">A+</option>
                             <option value="2">A-</option>
                             <option value="3">B+</option>
@@ -59,8 +58,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="donorcity">Select City:</label>
-                        <select class="form-control" id="donorcity">
+                        <label for="city">Select City:</label>
+                        <select class="form-control" id="city" name="city">
                         	<option value="1">Allahabad</option>
                             <option value="2">Aurangabad</option>
                             <option value="3">Bangalore</option>
@@ -86,8 +85,9 @@
                         </select>
                 	</div>
                 	<div class="form-group">
-                    	<pre><input type="checkbox" onchange="document.getElementById('requestbutton').disabled = !this.checked;" /> I accept the term's that my contact details 
-   will be broadcast on this site</pre>
+                    	<div class="alert alert-info"><input type="checkbox" onchange="document.getElementById('requestbutton').disabled = !this.checked;"/>
+                            I accept the term's that my contact details will be broadcast on this site
+                        </div>
                     </div>
                 	<div class="form-group">
                     	<input type="submit" value="Request" class="btn btn-primary" id="requestbutton" disabled>
@@ -115,3 +115,4 @@
     	</div>
 	</nav>
 </body>
+</html>

@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
 </head>
-<body>
+<body background="background/az_subtle_@2X.png">
 	<div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
         <div class="row">
                 <div class="col-md-1"></div>

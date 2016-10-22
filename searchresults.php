@@ -14,8 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
 
 </head>
-<body>
-
+<body background="background/az_subtle_@2X.png">
 	<div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
         <div class="row">
             <div class="col-md-1"></div>
@@ -29,7 +28,7 @@
         </div>
     </div>
     <div class="container">
-    <div class="row" style="padding-bottom: 10px">
+    <div class="row" style="padding-bottom: 50px">
     <div class="col-md-3"></div>
     <div class="col-md-6">
     <?php
@@ -81,20 +80,15 @@
         		$mobile = $row["mobileno"];
         		$email = $row["email"];
         		$location = $cities[$row["location"] - 1];
-        		echo "<div class='media'>";
+        		echo "<div class='media well' style='background-color: white'>";
                 echo "<div class='media-left'>";
                 echo "<img src='blood_drop-512.png' class='media-object img-rounded' style='width: 75px; height: 75px'>";
                 echo "</div>";
                 echo "<div class='media-body'>";
-                echo "<h4 class='media-heading'>$name</h4>";
-                echo "<p>";
-                echo "Mobile Number: $mobile";
-                echo "  |  ";
-                echo "Email: $email";
-                echo "</p>";
-                echo "<p>";
-                echo "City: $location";
-                echo "</p>";
+                echo "<h4 class='media-heading'>".$name."</h4>";
+                echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-phone'></span> ".$mobile."<br></div>";
+                echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-envelope'></span> ".$email."<br></div>";
+                echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-map-marker'></span> ".$location."<br></div>";
                 echo "</div>";
                 echo "</div>";
         	}
@@ -111,28 +105,22 @@
 				$email = $row["email"];
 				$blood = $bloodgroups[$row["bloodgroup"] - 1];
 				$city = $cities[$row["city"] - 1];
-				echo "<div class='media'>";
+				echo "<div class='media well' style='background-color: white'>";
 				echo "<div class='media-left'>";
 				echo "<img src='default-".$row['gender'].".png' class='media-object' style='width: 75px; height: 75px'>";
 				echo "</div>";
 				echo "<div class='media-body'>";
 				echo "<h4 class='media-heading'>$name</h4>";
-				echo "<p>";
-				echo "Mobile Number: $mobile";
-				echo "  |  ";
-				echo "Email: $email";
-				echo "</p>";
-				echo "<p>";
-				echo "Blood Group: $blood";
-				echo "  |  ";
-				echo "City: $city";
-				echo "</p>";
+				echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-phone'></span> ".$mobile."<br></div>";
+                echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-envelope'></span> ".$email."<br></div>";
+                echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-heart'></span> ".$blood."<br></div>";
+                echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-map-marker'></span> ".$city."<br></div>";
 				echo "</div>";
 				echo "</div>";
 			}
         }
 
-        echo "<p>You can also choose to request blood <a href='requestblood.html'>here</a></p>";
+        echo "<div class='alert alert-info fade in out'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>You can also choose to request blood <a href='requestblood.html'><strong>here</strong></a></div>";
 
         mysql_close();
 

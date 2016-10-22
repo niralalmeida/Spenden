@@ -19,7 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
 	</head>
-	<body>
+	<body background="background/az_subtle_@2X.png">
 		<div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
             <div class="row">
                 <div class="col-md-1"></div>
@@ -34,52 +34,8 @@
         </div>
         <div class="container" style="padding-bottom: 40px">
         	<div class="row">
-        		<div class="col-md-4">
-        			<h3>Rudolph Almeida</h3>
-        			<ul>
-        				<li>TECMPN A</li>
-        				<li>Roll No: 5</li>
-        				<li>Primary Role: Coding, implementation and serial coffee consumer</li>
-        			</ul>
-        			<blockquote>
-        				<p>Suddenly the "&lt;" and "&gt;" keys on my keyboard are all rubbed out.</p>
-        				<footer>Rudolph Almeida</footer>
-        			</blockquote>
-        		</div>
-        		<div class="col-md-4">
-        			<h3>Niral Almeida</h3>
-        			<ul>
-        				<li>TECMPN A</li>
-        				<li>Roll No: 4</li>
-        				<li>Primary Role: Designing and Documentation</li>
-        			</ul>
-        			<blockquote>
-        				<p>The boys did a good job but there is still scope for improvement.</p>
-        				<footer><strike>MS Dhoni</strike> Niral Almeida</footer>
-        			</blockquote>
-        		</div>
-        		<div class="col-md-4">
-        			<h3>Smit Carvalho</h3>
-        			<ul>
-        				<li>TECMPN A</li>
-        				<li>Roll No: 9</li>
-        				<li>Primary Role: Documentation and Coding</li>
-        			</ul>
-        			<blockquote>
-        				<p>I think it's important to have some documentation of the past.</p>
-        				<footer><strike>Henry Rollins</strike> Smit Carvalho</footer>
-        			</blockquote>
-        		</div>
+        		
         	</div>
-        </div>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <pre style="padding-bottom: 10%;">This site was made using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="https://jquery.org/">Jquery</a>. 
-Registration switch designed at <a href="https://proto.io/freebies/onoff/">proto.io</a>
-Charts built using <a href="http://www.chartjs.org/">Chart.js</a></pre>
-            </div>
-            <div class="col-md-4"></div>
         </div>
         <?php
             session_start();
