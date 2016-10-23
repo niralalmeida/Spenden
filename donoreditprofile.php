@@ -1,6 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <?php
+        session_start();
+
+        if(isset($_POST) && (isset($_POST["update"]) || isset($_POST["delete"]))) {
+
+            if(isset($_POST["delete"])) {
+
+                mysql_connect("localhost","root") or die(mysql_error());
+                mysql_select_db("bloodbank") or die(mysql_error());
+
+                $query = "delete from donors where donorid = ".$_SESSION["id"];
+
+                mysql_query($query) or die(mysql_error());
+
+                mysql_close();
+
+                session_unset();
+                session_destroy();
+
+                header("Location: index.html");
+                exit();
+
+            } else {
+
+                mysql_connect("localhost", "root") or die(mysql_error());
+                mysql_select_db("bloodbank") or die(mysql_error());
+
+
+                if(isset($_POST["fullname"]) and $_POST["fullname"] != "") {
+
+                    mysql_query("update donors set name = '".$_POST["fullname"]."' where donorid = ".$_SESSION['id']) or die(mysql_error());
+
+                }
+
+                if(isset($_POST["age"]) and $_POST["age"] != "") {
+
+                    mysql_query("update donors set age = ".$_POST["age"]." where donorid = ".$_SESSION['id']) or die(mysql_error());
+
+                }
+
+                if(isset($_POST["mobileno"]) and $_POST["mobileno"] != "") {
+
+                    mysql_query("update donors set mobileno = '".$_POST["mobileno"]."' where donorid = ".$_SESSION['id']) or die(mysql_error());
+
+                }
+
+                if(isset($_POST["password"]) and $_POST["password"] != "") {
+
+                    mysql_query("update donors set password = '".md5($_POST["password"])."' where donorid = ".$_SESSION['id']) or die(mysql_error());
+
+                }
+
+                if(isset($_POST["weight"]) and $_POST["weight"] != "") {
+
+                    mysql_query("update donors set weight = ".$_POST["weight"]." where donorid = ".$_SESSION['id']) or die(mysql_error());
+
+                }
+
+                if(isset($_POST["gender"]) and $_POST["gender"] != "") {
+
+                    mysql_query("update donors set gender = '".$_POST["gender"]."' where donorid = ".$_SESSION['id']) or die(mysql_error());
+
+                }
+
+                if(isset($_POST["bloodgroup"]) and $_POST["bloodgroup"] != 0) {
+
+                    mysql_query("update donors set bloodgroup = ".$_POST["bloodgroup"]." where donorid = ".$_SESSION['id']) or die(mysql_error());
+
+                }
+
+                if(isset($_POST["city"]) and $_POST["city"] != 0) {
+
+                    mysql_query("update donors set city = ".$_POST["city"]." where donorid = ".$_SESSION['id']) or die(mysql_error());
+
+                }
+
+                mysql_close();
+                $flag = 1;
+
+            }
+
+        } else {
+
+            $flag = 0;
+
+        }
+    ?>
 	<title>Spenden - Edit Profile</title>
 
 	<meta charset="utf-8">
@@ -14,13 +101,19 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#navbuttons li:nth-child(3)').addClass('active');
+            var flag = <?php if(isset($_POST)) { echo $flag; } else { echo 0;} ?>;
+            if(flag == 1) {
+                $("#success").show();
+            } else {
+                $("#success").hide();
+            }
         });
     </script>
     
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
+<body background="background/az_subtle_@2X.png">
 	<div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
         <div class="row">
             <div class="col-md-1"></div>
@@ -34,10 +127,19 @@
         </div>
     </div>
     <div class="container" style="padding-bottom: 55px">
+        <div class="row" id="success">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="alert alert-success">
+                    Edit Profile Successful!
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
     	<div class="row">
     		<div class="col-md-4"></div>
-    		<div class="col-md-4">
-    			<form name="editprofile" method="post" action="updatedonor.php">
+    		<div class="col-md-4 well" style="background-color: white">
+    			<form name="editprofile" method="post" action="donoreditprofile.php">
     				<div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" id="donorname" name="fullname" placeholder="Enter New Name">

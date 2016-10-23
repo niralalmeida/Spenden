@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <?php
+        session_start();
+
+        if(isset($_POST) && isset($_POST["eventname"])) {
+
+            $name = $_POST["eventname"];
+            $day = $_POST["eventday"];
+            $month = $_POST["eventmonth"];
+            $location = $_POST["eventlocation"];
+ 
+            mysql_connect("localhost", "root") or die(mysql_error());
+            mysql_select_db("bloodbank") or die(mysql_error());
+
+            $maxid = mysql_query("select max(eventid) from events") or die(mysql_error());
+                $maxid = mysql_fetch_array($maxid);
+                $maxid = $maxid[0] + 1;
+
+            $query = "insert into events(eventid,bankid,eventname,eventday,eventmonth,eventlocation) values(".$maxid.",".$_SESSION["id"].",'".$name."',".$day.",".$month.",'".$location."')";
+
+            mysql_query($query) or die(mysql_error());
+
+            mysql_close();
+            $flag = 1;
+
+        } else {
+            $flag = 0;
+        }
+
+    ?>
 	<title>Spenden - Publish Event</title>
 
 	<meta charset="utf-8">
@@ -13,6 +42,12 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#navbuttons li:nth-child(2)').addClass('active');
+            var flag = <?php if(isset($_POST)) { echo $flag; } else { echo 0;} ?>;
+            if(flag == 1) {
+                $("#success").show();
+            } else {
+                $("#success").hide();
+            }
         });
     </script>
     
@@ -20,7 +55,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
-<body>
+<body background="background/az_subtle_@2X.png">
 	<div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
         <div class="row">
             <div class="col-md-1"></div>
@@ -34,10 +69,19 @@
         </div>
     </div>
     <div class="container" style="padding-bottom: 55px">
-    <div class="row">
+    <div class="row" id="success">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <form name="eventform" method="post" action="storeevent.php">
+            <div class="alert alert-success">
+                Event Submitted!
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 well" style="background-color: white">
+            <form name="eventform" method="post" action="publishevent.php">
                 <div class="form-group">
                     <label for="eventname">Event Name:</label>
                     <input type="text" name="eventname" id="eventname" class="form-control" placeholder="Enter Event Name">

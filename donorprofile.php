@@ -63,7 +63,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
 	</head>
-	<body>
+	<body background="background/az_subtle_@2X.png">
 		<div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
             <div class="row">
                 <div class="col-md-1"></div>
@@ -79,7 +79,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="col-md-8 well" style="background-color: white">
                     <div class="media">
                         <div class="media-left">
                             <img src="default-<?php echo($result['gender']);  ?>.png" class="media-object" style="height: 150px; width: 150px;">

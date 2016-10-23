@@ -9,7 +9,6 @@
 		<script type="text/javascript" src="jquery3.1.1.js"></script>
 		<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
-		<script type="text/javascript" src="bloodbankscript.js"></script>
         <script type="text/javascript">
         $(document).ready(function() {
             $('#navbuttons li:nth-child(5)').addClass('active');

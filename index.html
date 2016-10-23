@@ -8,7 +8,21 @@
         <script src="jquery3.1.1.js"></script>
         <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         
-        <script src="bloodbankscript.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+
+            function formaction() {
+                document.getElementById('login_button').disabled = false;
+                if (document.getElementsByName("optradio")[0].checked) {
+                    document.getElementById("login").action = "donorprofile.php";
+                } else {
+                    document.getElementById("login").action = "bankprofile.php";
+                }
+            }
+
+        </script>
         
         <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -45,11 +59,11 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid" style="margin-bottom: 50px; padding-bottom: 50px;">
+        <div class="container-fluid" style="margin-bottom: 40px; padding-bottom: 50px;">
             <!--Center Row-->
             <div class="row top-buffer">
                 <div class="col-md-1"></div>
-                <div class="col-md-4" id="search-donor" style="border-radius: 5px">
+                <div class="col-md-4 well" id="search-donor" style="border-radius: 5px">
                     <h2 style="padding-bottom: 20px;">Search Donors</h2>
                     <form name="searchblood" method="post" action="searchresults.php">
                         <div class="form-group">
@@ -98,7 +112,7 @@
                     </form>
                 </div>
                 <div class="col-md-1"></div>
-                <div class="col-md-5" id="quote" style="height: 375px; border-radius: 5px">
+                <div class="col-md-5" id="quote" style="height: 380px; border-radius: 5px">
                     <h2>Blood Tips</h2>
                     <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
                     <!--Indicators
@@ -154,8 +168,8 @@
                  </div>
                  <ul class="nav navbar-nav">
                      <li class="active"><a href="index.html">Search Blood</a></li>
-                     <li><a href="requestblood.html">Request Blood</a></li>
-                     <li><a href="register.html">Registration</a></li>
+                     <li><a href="requestblood.php">Request Blood</a></li>
+                     <li><a href="register.php">Registration</a></li>
                      <li><a href="donorlist.php">Donor Directory</a></li>
                      <li><a href="banklist.php">Bank Directory</a></li>
                      <li><a href="bloodtips.php">Blood Tips</a></li>

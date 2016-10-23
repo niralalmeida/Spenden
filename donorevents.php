@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
 </head>
-<body>
+<body background="background/az_subtle_@2X.png">
 	<div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
         <div class="row">
             <div class="col-md-1"></div>
@@ -68,26 +68,20 @@
     									$bankname = $bank["name"];
     									$mobile = $bank["mobileno"];
     									$email = $bank["email"];
+                                        echo "<div class='well' style='background-color: white'>";
     									echo "<div class='media'>";
 										echo "<div class='media-left'>";
 										echo "<img src='blood_drop-512.png' class='media-object' style='width: 75px; height: 75px'>";
 										echo "</div>";
 										echo "<div class='media-body'>";
 										echo "<h4 class='media-heading'>$eventname</h4>";
-										echo "<p>";
-										echo "On: $eventday of $eventmonth";
-										echo "  |  ";
-										echo "At: $eventlocation";
-										echo "</p>";
-										echo "<p>";
-										echo "By: $bankname";
-										echo "  |  ";
-										echo "Mobile: $mobile";
-										echo "  |  ";
-										echo "Email: $email";
-										echo "</p>";
+                                        echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-calendar'></span> ".$eventday." of ".$eventmonth."<br></div>";
+										echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-map-marker'></span> ".$eventlocation."<br></div>";
+                                        echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-phone'></span> ".$mobile."<br></div>";
+                                        echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-envelope'></span> ".$email."<br></div>";
 										echo "</div>";
 										echo "</div>";
+                                        echo "</div>";
     								}
     							}
     						}
