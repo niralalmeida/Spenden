@@ -38,39 +38,36 @@
 
         $bloodgroup = $_POST["bloodgroup"];
         $city = $_POST["city"];
-        $groupname = null;
-
-        switch ($bloodgroup) {
-        	case 1:
-        		$groupname = 'aplus';
-        		break;
-        	case 2:
-        		$groupname = 'aminus';
-        		break;
-        	case 3:
-        		$groupname = 'bplus';
-        		break;
-        	case 4:
-        		$groupname = 'bminus';
-        		break;
-        	case 5:
-        		$groupname = 'oplus';
-        		break;
-        	case 6:
-        		$groupname = 'ominus';
-        		break;
-        	case 7:
-        		$groupname = 'abplus';
-        		break;
-        	case 8:
-        		$groupname = 'abminus';
-        		break;
-        }
 
         mysql_connect("localhost","root") or die(mysql_error());
         mysql_select_db("bloodbank") or die(mysql_error());
 
-        $query = "select * from bloodbanks where location = ".$city." and bankid in (select bankid from bloodstocks where ".$groupname." > 0) order by name";
+        switch ($bloodgroup) {
+            case 1:
+                $query = "select * from bloodbanks where location = ".$city." and bankid in (select bankid from bloodstocks where aplus > 0 or aminus > 0 or oplus > 0 or ominus > 0) order by name";
+                break;
+            case 2:
+                $query = "select * from bloodbanks where location = ".$city." and bankid in (select bankid from bloodstocks where aminus > 0 or ominus > 0) order by name";
+                break;
+            case 3:
+                $query = "select * from bloodbanks where location = ".$city." and bankid in (select bankid from bloodstocks where bplus > 0 or bminus > 0 or oplus > 0 or ominus > 0) order by name";
+                break;
+            case 4:
+                $query = "select * from bloodbanks where location = ".$city." and bankid in (select bankid from bloodstocks where bminus > 0 or ominus > 0) order by name";
+                break;
+            case 5:
+                $query = "select * from bloodbanks where location = ".$city." and bankid in (select bankid from bloodstocks where oplus > 0 or ominus > 0) order by name";
+                break;
+            case 6:
+                $query = "select * from bloodbanks where location = ".$city." and bankid in (select bankid from bloodstocks where ominus > 0) order by name";
+                break;
+            case 7:
+                $query = "select * from bloodbanks where location = ".$city." and bankid in (select bankid from bloodstocks where oplus > 0 or ominus > 0 or aplus > 0 or aminus > 0 or bplus > 0 or bminus > 0 or abplus > 0 or abminus > 0) order by name";
+                break;
+            case 8:
+                $query = "select * from bloodbanks where location = ".$city." and bankid in (select bankid from bloodstocks where ominus > 0 or aminus > 0 or bminus > 0 or abminus > 0) order by name";
+                break;
+        }
 
         $result = mysql_query($query) or die(mysql_error());
         if(mysql_num_rows($result) > 0) {
@@ -94,7 +91,34 @@
         	}
         }
 
-        $query = "select * from donors where city = ".$city." and bloodgroup = ".$bloodgroup." order by name";
+        switch($bloodgroup) {
+            case 1:
+                $query = "select * from donors where city = ".$city." and bloodgroup in (1,2,5,6) order by name";
+                break;
+            case 2:
+                $query = "select * from donors where city = ".$city." and bloodgroup in (2,6) order by name";
+                break;
+            case 3:
+                $query = "select * from donors where city = ".$city." and bloodgroup in (3,4,5,6) order by name";
+                break;
+            case 4:
+                $query = "select * from donors where city = ".$city." and bloodgroup in (4,6) order by name";
+                break;
+            case 5:
+                $query = "select * from donors where city = ".$city." and bloodgroup in (5,6) order by name";
+                break;
+            case 6:
+                $query = "select * from donors where city = ".$city." and bloodgroup in (6) order by name";
+                break;
+            case 7:
+                $query = "select * from donors where city = ".$city." and bloodgroup in (1,2,3,4,5,6,7,8) order by name";
+                break;
+            case 8:
+                $query = "select * from donors where city = ".$city." and bloodgroup in (2,4,6,8) order by name";
+                break;
+
+        }
+
         $result = mysql_query($query) or die(mysql_error());
 
         if (mysql_num_rows($result) > 0) {
@@ -120,7 +144,7 @@
 			}
         }
 
-        echo "<div class='alert alert-info fade in out'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>You can also choose to request blood <a href='requestblood.html'><strong>here</strong></a></div>";
+        echo "<div class='alert alert-info fade in out'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>You can also choose to request blood <a href='requestblood.php'><strong>here</strong></a></div>";
 
         mysql_close();
 
@@ -136,8 +160,8 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="index.html">Search Blood</a></li>
-                <li><a href="requestblood.html">Request Blood</a></li>
-                <li><a href="register.html">Registration</a></li>
+                <li><a href="requestblood.php">Request Blood</a></li>
+                <li><a href="register.php">Registration</a></li>
                 <li><a href="donorlist.php">Donor Directory</a></li>
                 <li><a href="banklist.php">Bank Directory</a></li>
                 <li><a href="bloodtips.php">Blood Tips</a></li>

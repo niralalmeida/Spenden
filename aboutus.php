@@ -34,7 +34,33 @@
         </div>
         <div class="container" style="padding-bottom: 40px">
         	<div class="row">
-        		
+        		<div class="col-md-1"></div>
+                <div class="col-md-5 well" style="background-color: white;">
+                    <h3>Blood Bank Support System - Spenden</h3>
+                    <p>Spenden is our Third Year Web Technologies Project</p>
+                    <p>Contributing Members are:</p>
+                    <ul>
+                        <li>Niral Almeida - 4</li>
+                        <li>Rudolph Almeida - 5</li>
+                        <li>Smit Carvalho - 9</li>
+                    </ul>
+                    <p>Special Thanks to:</p>
+                    <ul>
+                        <li>Jayashree Mittal Mam</li>
+                        <li>Ankita Karia Mam</li>
+                        <li>Sneha Nikam Mam</li>
+                    </ul>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-4 well" style="background-color: white">
+                    <h3>Tools and libraries used:</h3>
+                    <ul>
+                        <li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+                        <li><a href="https://jquery.org/">Jquery</a></li>
+                        <li><a href="http://www.chartjs.org/">Chart.js</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-1"></div>
         	</div>
         </div>
         <?php

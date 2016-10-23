@@ -50,7 +50,32 @@
             		$donor = mysql_query($query) or die(mysql_error());
             		$donor = mysql_fetch_array($donor);
 
-            		$query = "select * from requests where city = ".$donor["city"]." and bloodgroup = ".$donor["bloodgroup"];
+                    switch ($donor["bloodgroup"]) {
+                        case 1:
+                            $query = "select * from requests where city = ".$donor["city"]." and bloodgroup in (1,2,7,8)";
+                            break;
+                        case 2:
+                            $query = "select * from requests where city = ".$donor["city"]." and bloodgroup in (2,8)";
+                            break;
+                        case 3:
+                            $query = "select * from requests where city = ".$donor["city"]." and bloodgroup in (3,4,7,8)";
+                            break;
+                        case 4:
+                            $query = "select * from requests where city = ".$donor["city"]." and bloodgroup in (4,8)";
+                            break;
+                        case 5:
+                            $query = "select * from requests where city = ".$donor["city"]." and bloodgroup in (1,2,5,6,3,4,7,8)";
+                            break;
+                        case 6:
+                            $query = "select * from requests where city = ".$donor["city"]." and bloodgroup in (2,4,6,8) ";
+                            break;
+                        case 7:
+                            $query = "select * from requests where city = ".$donor["city"]." and bloodgroup in (7,8) ";
+                            break;
+                        case 8:
+                            $query = "select * from requests where city = ".$donor["city"]." and bloodgroup in (8) ";
+                            break;
+                    }
 
             		$requests = mysql_query($query) or die(mysql_error());
             		if(mysql_num_rows($requests) > 0) {
@@ -59,6 +84,7 @@
             				$fullname = $row["name"];
             				$email = $row["email"];
             				$mobileno = $row["mobileno"];
+                            $blood = $bloodgroup[$row["bloodgroup"] - 1];
             				echo "<div class='well' style='background-color: white'>";
     						echo "<div class='media'>";
                         	echo "<div class='media-left'>";
@@ -68,6 +94,7 @@
                         	echo "<h4 class='media-heading'>".$fullname."</h4>";
                         	echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-envelope'></span> ".$email."<br></div>";
                             echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-phone'></span> ".$mobileno."<br></div>";
+                            echo "<div style='padding-bottom: 5px'><span class='glyphicon glyphicon-heart'></span> ".$blood."<br></div>";
                         	echo "</div></div></div>";
 
             			}

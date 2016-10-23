@@ -82,7 +82,6 @@
     
     <script src="jquery3.1.1.js"></script>
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="bootstrap-switch.min.js"></script>
     
     <script type="text/javascript">
         function formSelect() {
@@ -95,14 +94,166 @@
             }
         }
 
+        function validatedonorname(name) {
+            if(name) {
+                var pattern = /^[a-zA-Z ]*$/;
+                if(name.match(pattern)) {
+                    $('#donorsubmitbutton').attr('disabled', false);
+                    $('#namevalid').hide();
+                    $('#nameempty').hide();
+                    return true;
+                } else {
+                    $('#donorsubmitbutton').attr('disabled', true);
+                    $('#namevalid').show();
+                    $('#nameempty').hide();
+                    return false;
+                }
+            } else {
+                $('#donorsubmitbutton').attr('disabled', true);
+                $('#nameempty').show();
+                $('#namevalid').hide();
+                return false;
+            }
+        }
+        
+        function validatedonorage(age) {
+            if(age) {
+                if(age >= 18 && age <= 65) {
+                    $('#donorsubmitbutton').attr('disabled', false);
+                    $('#agevalid').hide();
+                    $('#agerequired').hide();
+                    return true;
+                } else {
+                    $('#donorsubmitbutton').attr('disabled', true);
+                    $('#agevalid').show();
+                    $('#agerequired').hide();
+                    return false;
+                }
+            } else {
+                $('#donorsubmitbutton').attr('disabled', true);
+                $('#agerequired').show();
+                $('#agevalid').hide();
+                return false;
+            }
+        }
+
+        function validatedonorweight(weight) {
+            if(weight) {
+                if(weight >= 45) {
+                    $('#donorsubmitbutton').attr('disabled', false);
+                    $('#weightvalid').hide();
+                    $('#weightrequired').hide();
+                    return true;
+                } else {
+                    $('#donorsubmitbutton').attr('disabled', true);
+                    $('#weightvalid').show();
+                    $('#weightrequired').hide();
+                    return false;
+                }
+            } else {
+                $('#donorsubmitbutton').attr('disabled', true);
+                $('#weightrequired').show();
+                $('#weightvalid').hide();
+                return false;
+            }
+        }
+
+        function validatedonormobile(mobile) {
+            if(mobile) {
+                if(mobile.length == 10) {
+                    $('#donorsubmitbutton').attr('disabled', false);
+                    $('#mobilevalid').hide();
+                    $('#mobilerequired').hide();
+                    return true;
+                } else {
+                    $('#donorsubmitbutton').attr('disabled', true);
+                    $('#mobilevalid').show();
+                    $('#mobilerequired').hide();
+                    return false;
+                }
+            } else {
+                $('#donorsubmitbutton').attr('disabled', true);
+                $('#mobilerequired').show();
+                $('#mobilevalid').hide();
+                return false;
+            }
+        }
+
+        function validatedonorpassword() {
+            var pass1 = document.getElementById("donorpassword").value;
+            var pass2 = document.getElementById("donorpassword2").value;
+            if(pass1 && pass2) {
+                if(pass1 == pass2) {
+                    $('#donorsubmitbutton').attr('disabled', false);
+                    $('#passwordvalid').hide();
+                    $('#passwordrequired').hide();
+                    return true;
+                } else {
+                    $('#donorsubmitbutton').attr('disabled', true);
+                    $('#passwordvalid').show();
+                    $('#passwordrequired').hide();
+                    return false;
+                }
+            } else {
+                $('#donorsubmitbutton').attr('disabled', true);
+                $('#passwordrequired').show();
+                $('#passwordvalid').hide();
+                return false;
+            }
+        }
+
+        function validatedonoremail(email) {
+            if(email) {
+                $('#emailrequired').hide();
+                $('#donorsubmitbutton').attr('disabled', false);
+                return true;
+            } else {
+                $('#emailrequired').show();
+                $('#donorsubmitbutton').attr('disabled', true);
+                return false;
+            }
+        }
+
+        /*
+        $("#donorsubmitbutton").submit(function() {
+
+            var name = document.getElementById("donorname").value;
+            var age = document.getElementById("donorage").value;
+            var mobile = document.getElementById("donormobileno").value;
+            var weight = document.getElementById("donorweight").value;
+            var email = document.getElementById("donoremail").value;
+            console.log("hello");
+
+            if(validatedonoremail(email) && validatedonorpassword() && validatedonorage(age) && validatedonormobile(mobile) && validatedonorweight(weight) && validatedonorname(name)) {
+                console.log("all true");
+                return true;
+            } else {
+                console.log("all false");
+                return false;
+            }
+
+        });
+        */
+
         function init() {
             $('#bankRegister').hide();
             $('#donorRegister').show();
+            $('#namevalid').hide();
+            $('#nameempty').hide();
+            $('#agevalid').hide();
+            $('#agerequired').hide();
+            $('#mobilevalid').hide();
+            $('#mobilerequired').hide();
+            $('#passwordvalid').hide();
+            $('#passwordrequired').hide();
+            $('#emailrequired').hide();
+            $('#weightvalid').hide();
+            $('#weightrequired').hide();
+            $('#donorsubmitbutton').attr('disabled', true);
         }
     </script>
     
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="bootstrap-switch.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="switch.css">
 </head>
@@ -145,32 +296,69 @@
                     <form name="donorRegister" id="donorRegister" method="post" action="register.php">
                         <div class="form-group">
                             <label for="name">Name:</label>
-                            <input type="text" class="form-control" id="donorname" name="fullname" placeholder="Enter Full Name">
+                            <input type="text" class="form-control" id="donorname" name="fullname" placeholder="Enter Full Name" onkeyup="validatedonorname(this.value)">
+                        </div>
+                        <div class="alert alert-danger" id="namevalid">
+                            Name cannot contain punctuation or numbers
+                        </div>
+                        <div class="alert alert-danger" id="nameempty">
+                            Name is Required
                         </div>
                         <div class="form-group">
                             <label for="age">Age:</label>
-                            <input type="number" name="age" class="form-control" id="donorage" placeholder="Enter Age">
+                            <input type="number" name="age" class="form-control" id="donorage" placeholder="Enter Age" onkeyup="validatedonorage(this.value)" onchange="validatedonorage(this.value)">
+                        </div>
+                        <div class="alert alert-danger" id="agevalid">
+                            Age should be between 18 and 65
+                        </div>
+                        <div class="alert alert-danger" id="agerequired">
+                            Age is required
                         </div>
                         <div class="form-group">
                             <label for="mobileno">Mobile Number:</label>
-                            <input type="text" name="mobileno" id="donormobileno" class="form-control" placeholder="Enter Mobile Number">
+                            <input type="text" name="mobileno" id="donormobileno" class="form-control" placeholder="Enter Mobile Number" onkeyup="validatedonormobile(this.value)">
+                        </div>
+                        <div class="alert alert-danger" id="mobilevalid">
+                            Mobile can be 10 digits only
+                        </div>
+                        <div class="alert alert-danger" id="mobilerequired">
+                            Mobile is required
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" name="email" id="donoremail" class="form-control" placeholder="Enter Email Id">
+                            <input type="email" name="email" id="donoremail" class="form-control" placeholder="Enter Email Id" onkeyup="validatedonoremail(this.value)">
+                        </div>
+                        <div class="alert alert-danger" id="emailrequired">
+                            Email is required
                         </div>
                         <div class="form-group">
                             <label for="password">Password: </label>
-                            <input type="password" name="password" id="donorpassword" class="form-control" placeholder="Enter Password">
+                            <input type="password" name="password" id="donorpassword" class="form-control" placeholder="Enter Password" onkeyup="validatedonorpassword()">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Enter Password again:  </label>
+                            <input type="password" name="password2" id="donorpassword2" class="form-control" placeholder="Enter Password Again" onkeyup="validatedonorpassword()">
+                        </div>
+                        <div class="alert alert-danger" id="passwordvalid">
+                            Both Password fields should match
+                        </div>
+                        <div class="alert alert-danger" id="passwordrequired">
+                            Both Password fields are required
                         </div>
                         <div class="form-group">
                             <label for="weight">Weight:</label>
-                            <input type="number" name="weight" id="donorweight" class="form-control" placeholder="Enter Weight in Kgs.">
+                            <input type="number" name="weight" id="donorweight" class="form-control" placeholder="Enter Weight in Kgs." onkeyup="validatedonorweight(this.value)" onchange="validatedonorweight(this.value)">
+                        </div>
+                        <div class="alert alert-danger" id="weightvalid">
+                            Weight should be greater than 45 for you to be a donor
+                        </div>
+                        <div class="alert alert-danger" id="weightrequired">
+                            Weight is required
                         </div>
                         <div class="form-group">
                             <label for="genderdiv">Gender: </label>
                             <div id="genderdiv">
-                                <label class="radio-inline"><input type="radio" name="gender" value="male">Male</label>
+                                <label class="radio-inline"><input type="radio" name="gender" value="male" checked="checked">Male</label>
                                 <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
                                 <label class="radio-inline"><input type="radio" name="gender" value="other">Other</label>
                             </div>
