@@ -204,36 +204,49 @@
 
         function validatedonoremail(email) {
             if(email) {
-                $('#emailrequired').hide();
-                $('#donorsubmitbutton').attr('disabled', false);
-                return true;
+                var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                if(email.match(pattern)) {
+                    $('#donorsubmitbutton').attr('disabled', false);
+                    $('#emailvalid').hide();
+                    $('#emailrequired').hide();
+                    return true;
+                } else {
+                    $('#donorsubmitbutton').attr('disabled', true);
+                    $('#emailvalid').show();
+                    $('#emailrequired').hide();
+                    return false;
+                }
             } else {
                 $('#emailrequired').show();
+                $('#emailvalid').hide();
                 $('#donorsubmitbutton').attr('disabled', true);
                 return false;
             }
         }
 
-        /*
-        $("#donorsubmitbutton").submit(function() {
+        function donorvalidate() {
 
             var name = document.getElementById("donorname").value;
             var age = document.getElementById("donorage").value;
             var mobile = document.getElementById("donormobileno").value;
             var weight = document.getElementById("donorweight").value;
             var email = document.getElementById("donoremail").value;
-            console.log("hello");
 
-            if(validatedonoremail(email) && validatedonorpassword() && validatedonorage(age) && validatedonormobile(mobile) && validatedonorweight(weight) && validatedonorname(name)) {
-                console.log("all true");
+            var emailValid = validatedonoremail(email);
+            var nameValid = validatedonorname(name);
+            var passwordValid = validatedonorpassword();
+            var ageValid = validatedonorage(age);
+            var mobileValid = validatedonormobile(mobile);
+            var weightValid = validatedonorweight(weight);
+            
+
+            if(emailValid && nameValid && passwordValid && ageValid && weightValid && mobileValid) {
                 return true;
             } else {
-                console.log("all false");
                 return false;
             }
 
-        });
-        */
+        };
 
         function init() {
             $('#bankRegister').hide();
@@ -247,9 +260,9 @@
             $('#passwordvalid').hide();
             $('#passwordrequired').hide();
             $('#emailrequired').hide();
+            $('#emailvalid').hide();
             $('#weightvalid').hide();
             $('#weightrequired').hide();
-            $('#donorsubmitbutton').attr('disabled', true);
         }
     </script>
     
@@ -293,7 +306,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4" id="mainform">
-                    <form name="donorRegister" id="donorRegister" method="post" action="register.php">
+                    <form name="donorRegister" id="donorRegister" method="post" action="register.php" onsubmit="return donorvalidate();">
                         <div class="form-group">
                             <label for="name">Name:</label>
                             <input type="text" class="form-control" id="donorname" name="fullname" placeholder="Enter Full Name" onkeyup="validatedonorname(this.value)">
@@ -302,7 +315,7 @@
                             Name cannot contain punctuation or numbers
                         </div>
                         <div class="alert alert-danger" id="nameempty">
-                            Name is Required
+                            Name is required
                         </div>
                         <div class="form-group">
                             <label for="age">Age:</label>
@@ -327,6 +340,9 @@
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="email" name="email" id="donoremail" class="form-control" placeholder="Enter Email Id" onkeyup="validatedonoremail(this.value)">
+                        </div>
+                        <div class="alert alert-danger" id="emailvalid">
+                            Invalid Email address. Please enter a valid one
                         </div>
                         <div class="alert alert-danger" id="emailrequired">
                             Email is required
