@@ -30,7 +30,7 @@
                         label: 'Blood Stock (in litres)',
                         data: [<?php echo($stocks['aplus'].",".$stocks['aminus'].",".$stocks['bplus'].",".$stocks['bminus'].",".$stocks['oplus'].",".$stocks['ominus'].",".$stocks['abplus'].",".$stocks['abminus']) ?>],
                         backgroundColor: [
-                            'rgba(228, 6, 19, 1)',
+                            'rgba(228, 6, 019, 1)',
                             'rgba(228, 6, 019, 1)',
                             'rgba(228, 6, 019, 1)',
                             'rgba(228, 6, 019, 1)',

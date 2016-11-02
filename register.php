@@ -263,6 +263,13 @@
             $('#emailvalid').hide();
             $('#weightvalid').hide();
             $('#weightrequired').hide();
+            $('#banknamerequired').hide();
+            $('#bankemailrequired').hide();
+            $('#bankemailinvalid').hide();
+            $('#bankmobilerequired').hide();
+            $('#bankmobileinvalid').hide();
+            $('#bankpasswordrequired').hide();
+            $('#bankpasswordinvalid').hide();
         }
     </script>
     
@@ -352,8 +359,8 @@
                             <input type="password" name="password" id="donorpassword" class="form-control" placeholder="Enter Password" onkeyup="validatedonorpassword()">
                         </div>
                         <div class="form-group">
-                            <label for="password">Enter Password again:  </label>
-                            <input type="password" name="password2" id="donorpassword2" class="form-control" placeholder="Enter Password Again" onkeyup="validatedonorpassword()">
+                            <label for="donorpassword2">Enter Password again:  </label>
+                            <input type="password" id="donorpassword2" class="form-control" placeholder="Enter Password Again" onkeyup="validatedonorpassword()">
                         </div>
                         <div class="alert alert-danger" id="passwordvalid">
                             Both Password fields should match
@@ -429,17 +436,42 @@
                             <label for="bankname">Name:</label>
                             <input type="text" class="form-control" name="bname" id="bankname" placeholder="Enter Bank Name here">
                         </div>
+                        <div class="alert alert-danger" id="banknamerequired">
+                            Bank Name is Required
+                        </div>
                         <div class="form-group">
                             <label for="mobileno">Representative Mobile Number:</label>
                             <input type="text" name="mobileno" id="bankmobileno" class="form-control" placeholder="Enter Mobile Number">
+                        </div>
+                        <div class="alert alert-danger" id="bankmobileinvalid">
+                            Mobile number should contain only 10 digits
+                        </div>
+                        <div class="alert alert-danger" id="bankmobilerequired">
+                            Mobile number is required
                         </div>
                         <div class="form-group">
                             <label for="email">Representative Email:</label>
                             <input type="email" name="email" id="bankemail" class="form-control" placeholder="Enter Email Id">
                         </div>
+                        <div class="alert alert-danger" id="bankemailinvalid">
+                            Invalid email address. Please enter a valid one.
+                        </div>
+                        <div class="alert alert-danger" id="bankemailrequired">
+                            Email Address is required
+                        </div>
                         <div class="form-group">
                             <label for="password">Password: </label>
                             <input type="password" name="password" id="bankpassword" class="form-control" placeholder="Enter Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="bankpassword2">Please enter Password again: </label>
+                            <input type="password" id="bankpassword2" class="form-control" placeholder="Enter Password Again">
+                        </div>
+                        <div class="alert alert-danger" id="bankpasswordinvalid">
+                            Both Password fields should match
+                        </div>
+                        <div class="alert alert-danger" id="bankpasswordrequired">
+                            Both Password fields are required
                         </div>
                         <div class="form-group">
                             <label for="donorcity">Select City:</label>
