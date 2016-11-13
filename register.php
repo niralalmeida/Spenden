@@ -224,6 +224,86 @@
             }
         }
 
+        function validatebankname(name) {
+
+            if (name) {
+                $('#banknamerequired').hide();
+                $('#donorsubmitbutton').attr('disabled', false);
+                return true;
+            } else {
+                $('#banknamerequired').show();
+                $('#banksubmitbutton').attr('disabled', true);
+                return false;
+            }
+
+        }
+
+        function validatebankmobile(mobile) {
+            if (mobile) {
+                if (mobile.length == 10) {
+                    $('#banksubmitbutton').attr('disabled', false);
+                    $('#bankmobilevalid').hide();
+                    $('#bankmobilerequired').hide();
+                    return true;
+                } else {
+                    $('#banksubmitbutton').attr('disabled', true);
+                    $('#bankmobilevalid').show();
+                    $('#bankmobilerequired').hide();
+                    return false;
+                }
+            } else {
+                $('#banksubmitbutton').attr('disabled', true);
+                $('#bankmobilerequired').show();
+                $('#bankmobilevalid').hide();
+                return false;
+            }
+        }
+
+        function validatebankemail(email) {
+            if (email) {
+                var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                if (email.match(pattern)) {
+                    $('#banksubmitbutton').attr('disabled', false);
+                    $('#bankemailinvalid').hide();
+                    $('#bankemailrequired').hide();
+                    return true;
+                } else {
+                    $('#banksubmitbutton').attr('disabled', true);
+                    $('#bankemailinvalid').show();
+                    $('#bankemailrequired').hide();
+                    return false;
+                }
+            } else {
+                $('#bankemailrequired').show();
+                $('#bankemailinvalid').hide();
+                $('#banksubmitbutton').attr('disabled', true);
+                return false;
+            }
+        }
+
+        function validatebankpassword() {
+            var pass1 = document.getElementById("bankpassword").value;
+            var pass2 = document.getElementById("bankpassword2").value;
+            if (pass1 && pass2) {
+                if (pass1 == pass2) {
+                    $('#banksubmitbutton').attr('disabled', false);
+                    $('#bankpasswordinvalid').hide();
+                    $('#bankpasswordrequired').hide();
+                    return true;
+                } else {
+                    $('#banksubmitbutton').attr('disabled', true);
+                    $('#bankpasswordinvalid').show();
+                    $('#bankpasswordrequired').hide();
+                    return false;
+                }
+            } else {
+                $('#banksubmitbutton').attr('disabled', true);
+                $('#bankpasswordrequired').show();
+                $('#bankpasswordinvalid').hide();
+                return false;
+            }
+        }
+
         function donorvalidate() {
 
             var name = document.getElementById("donorname").value;
@@ -248,6 +328,25 @@
 
         };
 
+        function bankvalidate() {
+
+            var name = document.getElementById("bankname").value;
+            var email = document.getElementById("bankemail").value;
+            var mobile = document.getElementById("bankmobileno").value;
+
+            var nameValid = validatebankname(name);
+            var emailValid = validatebankemail(email);
+            var mobileValid = validatebankmobile(mobile);
+            var passwordValid = validatebankpassword();
+
+            if (nameValid && emailValid && mobileValid && passwordValid) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
         function init() {
             $('#bankRegister').hide();
             $('#donorRegister').show();
@@ -267,7 +366,7 @@
             $('#bankemailrequired').hide();
             $('#bankemailinvalid').hide();
             $('#bankmobilerequired').hide();
-            $('#bankmobileinvalid').hide();
+            $('#bankmobilevalid').hide();
             $('#bankpasswordrequired').hide();
             $('#bankpasswordinvalid').hide();
         }
@@ -431,19 +530,19 @@
                         	<input type="submit" value="Register" class="btn btn-primary" id="donorsubmitbutton">
                         </div>
                     </form>
-                    <form name="bankRegister" id="bankRegister" method="post" action="register.php">
+                    <form name="bankRegister" id="bankRegister" method="post" action="register.php" onsubmit="return bankvalidate()">
                         <div class="form-group">
                             <label for="bankname">Name:</label>
-                            <input type="text" class="form-control" name="bname" id="bankname" placeholder="Enter Bank Name here">
+                            <input type="text" class="form-control" name="bname" id="bankname" placeholder="Enter Bank Name here" onkeyup="validatebankname(this.value)">
                         </div>
                         <div class="alert alert-danger" id="banknamerequired">
                             Bank Name is Required
                         </div>
                         <div class="form-group">
                             <label for="mobileno">Representative Mobile Number:</label>
-                            <input type="text" name="mobileno" id="bankmobileno" class="form-control" placeholder="Enter Mobile Number">
+                            <input type="text" name="mobileno" id="bankmobileno" class="form-control" placeholder="Enter Mobile Number" onkeyup="validatebankmobile(this.value)">
                         </div>
-                        <div class="alert alert-danger" id="bankmobileinvalid">
+                        <div class="alert alert-danger" id="bankmobilevalid">
                             Mobile number should contain only 10 digits
                         </div>
                         <div class="alert alert-danger" id="bankmobilerequired">
@@ -451,7 +550,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Representative Email:</label>
-                            <input type="email" name="email" id="bankemail" class="form-control" placeholder="Enter Email Id">
+                            <input type="email" name="email" id="bankemail" class="form-control" placeholder="Enter Email Id" onkeyup="validatebankemail(this.value)">
                         </div>
                         <div class="alert alert-danger" id="bankemailinvalid">
                             Invalid email address. Please enter a valid one.
@@ -461,11 +560,11 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password: </label>
-                            <input type="password" name="password" id="bankpassword" class="form-control" placeholder="Enter Password">
+                            <input type="password" name="password" id="bankpassword" class="form-control" placeholder="Enter Password" onkeyup="validatebankpassword()">
                         </div>
                         <div class="form-group">
                             <label for="bankpassword2">Please enter Password again: </label>
-                            <input type="password" id="bankpassword2" class="form-control" placeholder="Enter Password Again">
+                            <input type="password" id="bankpassword2" class="form-control" placeholder="Enter Password Again" onkeyup="validatebankpassword()">
                         </div>
                         <div class="alert alert-danger" id="bankpasswordinvalid">
                             Both Password fields should match
