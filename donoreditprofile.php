@@ -88,9 +88,9 @@
 
         }
     ?>
-	<title>Spenden - Edit Profile</title>
+    <title>Spenden - Edit Profile</title>
 
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <script src="jquery3.1.1.js"></script>
@@ -114,7 +114,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body background="background/az_subtle_@2X.png">
-	<div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
+    <div class="jumbotron" style="background-color: #d6351e; margin-bottom: 25px;">
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-1">
@@ -136,11 +136,11 @@
             </div>
             <div class="col-md-4"></div>
         </div>
-    	<div class="row">
-    		<div class="col-md-4"></div>
-    		<div class="col-md-4 well" style="background-color: white">
-    			<form name="editprofile" method="post" action="donoreditprofile.php">
-    				<div class="form-group">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 well" style="background-color: white">
+                <form name="editprofile" method="post" action="donoreditprofile.php">
+                    <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" id="donorname" name="fullname" placeholder="Enter New Name">
                     </div>
@@ -153,7 +153,7 @@
                         <input type="text" name="mobileno" id="donormobileno" class="form-control" placeholder="Enter New Mobile">
                     </div>
                     <div class="form-group">
-                    	<label for="password">Password: </label>
+                        <label for="password">Password: </label>
                         <input type="password" name="password" id="donorpassword" class="form-control" placeholder="Enter New Password">
                     </div>
                     <div class="form-group">
@@ -171,7 +171,7 @@
                     <div class="form-group">
                         <label for="bloodgroup">Select Blood Group:</label>
                         <select class="form-control" id="donorbloodgroup" name="bloodgroup">
-                        	<option value="0" selected="selected"></option>
+                            <option value="0" selected="selected"></option>
                             <option value="1">A+</option>
                             <option value="2">A-</option>
                             <option value="3">B+</option>
@@ -185,7 +185,7 @@
                     <div class="form-group">
                         <label for="donorcity">Select City:</label>
                         <select class="form-control" id="donorcity" name="city">
-                        	<option value="0" selected="selected"></option>
+                            <option value="0" selected="selected"></option>
                             <option value="1">Allahabad</option>
                             <option value="2">Aurangabad</option>
                             <option value="3">Bangalore</option>
@@ -211,13 +211,13 @@
                         </select>
                     </div>
                     <div class="form-group">
-                    	<input type="submit" name="delete" value="Delete" class="btn btn-danger" style="float: left;">
-                    	<input type="submit" name="update" value="Update" class="btn btn-primary" style="float: right;">
+                        <input type="submit" name="delete" value="Delete" class="btn btn-danger" style="float: left;">
+                        <input type="submit" name="update" value="Update" class="btn btn-primary" style="float: right;">
                     </div>
-    			</form>
-    		</div>
-    		<div class="col-md-4"></div>
-    	</div>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
     </div>
     <?php  include("loggeddonor.php"); ?>
 </body>
